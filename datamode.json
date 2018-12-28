@@ -1,0 +1,86 @@
+Project name
+project Id (generated)
+consultation type
+email
+requester name
+subjectmatter
+website
+soft deadline
+hard deadline
+subjectDescription
+questions []
+experts []
+fileList []
+
+
+
+
+{
+  "company": {
+    "profile": {
+      "logo": "url-string",
+      "name": "string",
+      "email": "string",
+      "website": "url-string",
+      "product": ["project.product.name"],
+      "description": "optional-string"
+    },
+    "project": {
+      "product": [{
+        "name": "string",
+        "logo":"url-string",
+        "website":"url-string",
+        "description": "optional-string",
+        "mOfA": "string",
+        "indication": [{
+          "name": "string",
+          "phase": "number",
+          "trial":[{
+            "name": "string",
+            "phase": "number",
+            "fpfv": "date",
+            "lplv": "date"
+          }]
+        }],
+        "adboardName": "string",
+        "agreement": {
+          "payment": {
+            "timeCommitment":["hours"],
+            "agreed":"bool",
+            "done":"bool"
+          },
+          "text": "string",
+          "signed": "date"
+        },
+        "startDate": "date",
+        "endDate": "date",
+        "advisors": ["advisor-object"],
+        "background": "string",
+        "question": [{
+          "text": "string",
+          "flagged": "bool",
+          "dateSubmitted":"date",
+          "dateAnswered": "date",
+          "dateResolved": "date",
+          "impReading": "string",
+          "answer": {
+            "text":"string",
+            "flagged": "bool",
+            "comment": [{
+              "text": "string",
+              "author": "string",
+              "flagged": "bool",
+              "dateSubmitted": "date"
+            }]
+          },
+          "tags":["strings"]
+        }],
+        "files": ["file-names"],
+        "reports": [{
+          "name": "report-name",
+          "created": "date"
+        }]
+      }]
+    }
+  }
+}

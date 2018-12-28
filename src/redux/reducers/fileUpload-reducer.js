@@ -1,4 +1,4 @@
-import { UPDATE_FILE_LIST, UPDATE_UPLOAD_CIRCLE, UPDATE_FILE_ERR, UPDATE_CURRENT_ADBOARD } from '../constants';
+import { UPDATE_FILE_LIST, UPDATE_FILE_ERR, UPDATE_CURRENT_PROJECT, UPDATE_CURRENT_PROJECT_NAME, UPDATE_CURRENT_PROJECT_TYPE } from '../constants';
 
 const fileUploadReducer = (state={}, {type, payload}) => {
   switch (type) {
@@ -6,17 +6,21 @@ const fileUploadReducer = (state={}, {type, payload}) => {
       return {...state, 
         fileList: payload
       }
-    case UPDATE_UPLOAD_CIRCLE:
-      return {...state, 
-        uploading: payload
-      }
     case UPDATE_FILE_ERR:
       return {...state, 
         fileError: payload
       }
-    case UPDATE_CURRENT_ADBOARD:
+    case UPDATE_CURRENT_PROJECT:
       return {...state, 
-        currentAdboard: payload
+        currentProject: payload
+      }
+    case UPDATE_CURRENT_PROJECT_NAME:
+      return {...state, 
+        currentProjectName: payload
+      }
+    case UPDATE_CURRENT_PROJECT_TYPE:
+      return {...state, 
+        currentProjectType: payload
       }
     default:
       return state;

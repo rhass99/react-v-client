@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { fireauth } from '../modules/firebaseConfig';
 import { updateAuth } from '../../redux/actions/auth-actions';
 
-export const mapStateToProps = (state) => {
-  const { auth } = state;
+// Wraps the landing Component
+export const mapStateToProps = ({ auth, user }) => {
+  const { loggedin, uid, email, emailVerified } = auth;
   return {
-    uid: auth.uid,
-    email: auth.email,
-    emailVerified: auth.emailVerified,
-    loggedin: auth.loggedin,
+    uid,
+    email,
+    emailVerified,
+    loggedin,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: () => {
+    handleSignIn: () => {
       fireauth.onAuthStateChanged(user => {
         if (user) {
           dispatch(updateAuth({
@@ -32,15 +33,6 @@ export const mapDispatchToProps = (dispatch) => {
           }))
         }
       })
-    },
-    signOut: () => {
-      fireauth.signOut();
-      dispatch(updateAuth({
-        loggedin: false,
-        uid: null,
-        email: null,
-        emailVerified: false,
-    }))
     }
   }
 }
@@ -49,15 +41,11 @@ export const mapDispatchToProps = (dispatch) => {
 export const LandingContainer = WrappedComponent => class extends Component {
   static displayName = `LandingWrapper(${WrappedComponent.displayName || WrappedComponent.name})`
   render () {
-    const { uid, email, emailVerified, loggedin, signIn, signOut } = this.props;
+    const { loggedin, handleSignIn } = this.props;
     return(
-      <WrappedComponent 
-      uid={uid} 
-      email={email} 
-      emailVerified={emailVerified} 
+      <WrappedComponent  
       loggedin={loggedin}
-      signIn={signIn}
-      signOut={signOut}
+      handleSignIn={handleSignIn}
       />
     );
   };

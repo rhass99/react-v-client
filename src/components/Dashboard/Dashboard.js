@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 // Import connect from react-redux
 import { connect } from 'react-redux';
 // Import Dashboard Container
@@ -13,16 +14,21 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // Custom Components
 import SideBar from './SideBar';
+import Main from './Main';
 // Custom CSS object
 import { styles } from '../styles/dashboardStyle';
 
 
 const DashboardComponent = (props) => {
-  console.log(props)
-  const { classes, dashboardTab, dashboardSideOpen, projectTab, handleDrawerOpen, handleDrawerClose, handleTabChange, handleProjectStage, uid, email, emailVerified, loggedin, signOut } = props
+  console.log("dash" + props)
+  // Props recieved from Dashboard Container
+  const { classes, dashboardTab, dashboardSideOpen, handleDrawerOpen, handleDrawerClose, handleTabChange, handleSignOut, appLoading } = props
+  // Actual Return component
   return (
+    
     <div className={classes.root}>
       <CssBaseline />
+      {/* Application Top Bar */}
       <AppBar
         position="absolute"
         className={classNames(classes.appBar, dashboardSideOpen && classes.appBarShift)}
@@ -39,6 +45,7 @@ const DashboardComponent = (props) => {
           >
             <MenuIcon />
           </IconButton>
+          {/* Title of the Dashboard Tab */}
           <Typography
             component="h1"
             variant="h5"
@@ -48,11 +55,13 @@ const DashboardComponent = (props) => {
           >
             {tabs[dashboardTab]}
           </Typography>
-          <IconButton color="inherit" onClick={signOut}>
+          {/* SignOut Button */}
+          <IconButton color="inherit" onClick={handleSignOut}>
               <ExitToAppIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
+      {/* Side Bar Container */}
       <Drawer
         variant="permanent"
         classes={{
@@ -66,12 +75,16 @@ const DashboardComponent = (props) => {
           </IconButton>
         </div>
         <Divider />
-        {/* <SideBar tabNames={tabs} onTabChange={this.handleTabChange}/> */}
+        {/* Side Bar Items */}
+        <SideBar tabNames={tabs} onTabChange={handleTabChange}/>
       </Drawer>
+      {/* Main Dashboard component */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <div>
-          {/* <MainComponent currentTab={this.state.currentTab} email_verified={email_verified} /> */}
+          {/* Edit for App Loading Circular */}
+          {appLoading === true ? <div>Loading</div> :
+          <Main dashboardTab={dashboardTab} />}
         </div>
       </main>
     </div>
@@ -79,5 +92,7 @@ const DashboardComponent = (props) => {
 }
 
 const Dashboard = connect(mapStateToProps, mapDispatchToProps)(DashboardContainer(withStyles(styles)(DashboardComponent)));
+
+// implement proptypes
 
 export default Dashboard;

@@ -3,11 +3,10 @@ const drawerWidth = 240;
 export const styles = theme => ({
   root: {
     display: 'flex',
+    width: '100%'
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    // add background color
-    backgroundColor: '#01a3a4'
   },
   toolbarIcon: {
     display: 'flex',
@@ -64,7 +63,8 @@ export const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing.unit * 3,
     height: '100vh',
     overflow: 'auto',
   },
@@ -76,5 +76,5 @@ export const styles = theme => ({
   },
   h5: {
     marginBottom: theme.spacing.unit * 2,
-  },
+  }
 });

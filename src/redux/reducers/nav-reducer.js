@@ -1,4 +1,4 @@
-import { TOGGLE_DASH_SIDE, UPDATE_DASH_TAB, UPDATE_PROJECT_TAB } from '../constants';
+import { TOGGLE_DASH_SIDE, UPDATE_DASH_TAB, UPDATE_PROJECT_TAB, UPDATE_APP_LOADING } from '../constants';
 
 const navReducer = (state={}, {type, payload}) => {
   switch(type) {
@@ -16,6 +16,11 @@ const navReducer = (state={}, {type, payload}) => {
       return {
         ...state,
         projectTab : payload
+      }
+    case UPDATE_APP_LOADING:
+      return {
+        ...state,
+        loading : payload
       }
     default:
       return state;

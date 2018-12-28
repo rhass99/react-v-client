@@ -12,20 +12,20 @@ import { mapStateToProps, mapDispatchToProps, LandingContainer } from '../contai
 
 // Landing view funcitonal component
 const LandingComponent = (props) => {
-  
-  const { loggedin, uid, email, emailVerified, signIn, signOut } = props;
+  console.log("landing" + props)
+  const { loggedin, handleSignIn } = props;
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      signIn()
-    }
-  });
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     handleSignIn()
+  //   }
+  // });
 
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
+    signInFlow: 'redirect',
     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: '/',
+    // signInSuccessUrl: '/',
     // Email is the auth provider.
     signInOptions: [
       firebase.auth.EmailAuthProvider.PROVIDER_ID
@@ -33,7 +33,7 @@ const LandingComponent = (props) => {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     callbacks: {
       // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => signIn()
+      signInSuccessWithAuthResult: handleSignIn()
     }
   };
 

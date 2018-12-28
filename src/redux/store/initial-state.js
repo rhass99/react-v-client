@@ -3,20 +3,22 @@
 
 export default {
   auth: {
-    loggedin: false,
     uid: null,
     email: null,
     emailVerified: false,
+    loggedin: false,
   },
   fileUpload: {
-    uploading: false,
     fileError: "",
     fileList: [],
-    currentAdboard: null
+    currentProject: "two",
+    currentProjectName: "",
+    currentProjectType: 0
   },
   nav: {
-    dashboardTab:0,
+    dashboardTab:6,
     dashboardSideOpen:false,
     projectTab:0,
-  }
+    appLoading:false,
+  },
 }
