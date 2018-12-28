@@ -21,4 +21,6 @@ export default {
     projectTab:0,
     appLoading:false,
   },
+  createProject: {
+  }
 }
